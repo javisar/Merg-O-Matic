@@ -1,0 +1,368 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Expires" content="0">
+		<meta http-equiv="Last-Modified" content="0">
+		<meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+		<meta http-equiv="Content-Cache" content="no-cache, mustrevalidate">
+		<meta http-equiv="Pragma" content="no-cache">
+		
+		<title>Youtube Playlist Manager</title>
+
+		<!-- STYLES	-->		
+			<link type="text/css" rel="stylesheet" href="./js/jquery-ui.css" />
+			<link type="text/css" rel="stylesheet" href="./js/suggest.min.css" />
+			<!--<link type="text/css" rel="stylesheet" href="./jquery/bootstrap.min.css" />-->
+			<link type="text/css" rel="stylesheet" href="./PlaylistManager.css" />
+		<!--
+		 		-->
+		<!-- SCRIPTS	-->		
+			<script type="text/javascript" src="./js/jquery.js"></script>
+			<script type="text/javascript" src="./js/jquery-ui.js"></script>
+			<!--<script type="text/javascript" src="./jquery/jquery.jsonp.js"></script>-->
+			<!--<script type="text/javascript" src="./js/canvas.todataurl.js"></script>-->
+			<script type="text/javascript" src="./js/booklet.download.js"></script>
+			<script type="text/javascript" src="./js/jquery.getimagedata.js"></script>
+			<script type="text/javascript" src="./js/jquery.googleSuggest.js"></script>		
+			<script type="text/javascript" src="./js/suggest.min.js"></script>
+			<script type="text/javascript" src="./js/quickpager.jquery.js"></script>
+			<!--<script type="text/javascript" src="./js/jquery.paging.js"></script>-->
+			<!--<script type="text/javascript" src="./ModuleAPI.v1.js"></script>-->
+			<script type="text/javascript" src="./ConfigAPI.v1.js"></script>
+			<script type="text/javascript" src="./PlaylistManager.config.js"></script>
+			<script type="text/javascript" src="./ServiceManager.v1.js"></script>
+			<script type="text/javascript" src="./OathService.v1.js"></script>
+			<script type="text/javascript" src="./YoutubeService.v1.js"></script>
+			<!--<script type="text/javascript" src="./GoogleService.v1.js"></script>		-->
+			<script type="text/javascript" src="./PlaylistManager.v1.js"></script>
+			<script type="text/javascript" src="./PlaylistManagerUI.v1.js"></script>
+		
+			<!--<script type="text/javascript" src="./authGoogle.v1.js"></script>-->
+			<!--<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=onAuthLoaded"></script>-->
+			<script type="text/javascript" src="https://apis.google.com/js/client.js"></script>
+		<!-- 		-->	
+	</head>
+
+	<body onload='PlaylistManager.init()'>
+	
+		<div id='tabs-list-panes'>				
+		</div>
+
+		<div id='panes-list-templates' style='visibility: hidden; display:none;'>
+		
+			<div id="pane-template-body-pager" class="tabs-list-pane" style='text-align: center; visibility:hidden;'>
+				<div class="pane_tab_body pane_tab_body_simple" style="height: 98%; border-width: 0px;">
+					<ul>
+						<li>
+							<a href="#pane-template-1" class='pane-template-button a_button' style='border-top: 1px; padding: 0em 0em; line-height: 0; cursor: pointer;'>pane-template-button-text</a>
+						</li>
+					</ul>
+					<table style='height: 96%; width: 100%; border: 0px; vertical-align: middle;'>
+						<tr>
+							<td style='height: 5px; text-align: center;'/>
+						</tr>
+						<tr>
+							<td style='width: 100%; text-align: center; vertical-align: top;'>
+								<div class="keep_inside" style="text-align: center;">
+									<ul class="pane-template-body-pager pane_to_template simplePagerContainer table_results" style='height: auto; width: 100%;'/>				
+								</div>
+							</td>
+						</tr>
+						<!-- 
+						<tr>
+							<td style='height: 5px; text-align: center;'/>
+						</tr>
+						 -->
+					</table>												
+				</div>
+			</div>
+			
+			<div id="pane-template-body-tabs-closeable" class='tabs-list-pane' style='text-align: center; visibility:hidden;'>
+				<div class="pane-template-results pane_tab_body" style="height: 98%; border-width: 0px;">
+					
+					<ul>
+						<!-- 
+						<li id='tab_result_SearchResults'>
+							<a href="#SearchResults">Results</a>
+							<span class='pane-template-clear ui-icon ui-icon-close'>Close</span>
+						</li>
+						 -->
+					</ul>	
+
+					<!-- 
+					<table style='height: 96%; width: 100%; border: 0px; vertical-align: middle;'>
+						<tr>
+							<td style='width: 100%; text-align: center; vertical-align: middle;'>
+								<div id="SearchResults" class="keep_inside" style="text-align: center;">
+									<ul class="pane-template-body-tabs-closeable pane_to_template simplePagerContainer table_results" style='height: auto; width: 100%;'/>				
+								</div>
+							</td>
+						</tr>						
+					</table>
+					-->	
+					<!-- 
+					<div id="SearchResults" class="keep_inside" style='text-align: center; width: 100%; height: 100%; border: 0px;'>
+						<table style='width: 100%; height: 100%; border: 0px;'>										
+							<tr>
+								<td style='height: 25px; text-align: center; vertical-align: top;'>&nbsp;</td>
+							</tr>
+							<tr>
+								<td>
+									<table style='width: 100%; height: 100%; border: 0px; text-align: center; vertical-align: top;'>
+										<tr>
+											<td style='width: 100%; text-align: center; vertical-align: top;'>
+												<div class="keep_inside" style="text-align: center;">
+													<ul class="pane-template-body-results simplePagerContainer pane_to_template table_results" style='height: 100%; width: 100%; display: block;'/>					
+												</div>	
+											</td>
+										</tr>
+									</table>	
+								</td>			
+							</tr>
+						</table>
+					</div>	
+					 -->					
+				</div>							
+			</div>
+			
+			<div id="pane-template-body-status" class="tabs-list-pane" style='text-align: center; visibility:hidden;'>
+				<div class="" style="height: 98%; border-width: 0px; text-align: center;">
+					<table style='height: 100%; width: 100%; text-align: center; border: 0px;'>
+						<tr>
+							<td style='width: 2%;'/>
+							<td style='text-align: center; width: auto;'>
+								<div class='pane_to_template'/>
+							</td>
+							<td style='width: 2%;'/>
+						</tr>					
+					</table>	
+				</div>			
+			</div>
+			
+			<div id="pane-template-body-login" class='tabs-list-pane' style='text-align: center; visibility:hidden;'>
+				<div class="" style="height: 96%; border-width: 0px; text-align: center;">
+					<table style="margin: auto auto auto auto; height: 100%; width: 80%; text-align: center; border: 0px;">
+						<tr>
+							<td style='text-align: center;'>						  
+								<ul class="pane-template-results" style="width: 100px;">
+									<li style="text-align: center;">
+									    <a class="pane-template-results-n1" href="#">Menu</a>
+									    <ul class="pane-template-results-n1_1"style="width: 100px;">
+										<li>
+											<a href="#">Layout</a>
+											<ul class="pane-template-results-n1_1_1">
+												<li><a class='rescale_button' href="#" onclick="UI_exec_menu_option('rescale');">Edit</a></li>
+												<li><a class='save_config_button' href="#" onclick="UI_exec_menu_option('save');">Save</a></li>
+												<li><a class='cancel_config_button' href="#" onclick="UI_exec_menu_option('cancel');">Cancel</a></li>
+											</ul>
+										</li>																
+										<li><a class='login_button' href="#" onclick="UI_exec_menu_option($(this).text().toLowerCase());">Login</a></li>
+									    </ul>
+									</li>																			
+								</ul>
+								
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+			<div id="pane-template-body-search" class='tabs-list-pane' style='text-align: center; visibility:hidden;'>
+				<div class="" style="height: 96%; border-width: 0px;">
+					<table style='height: 100%; width: 100%;'>
+						<tr style='vertical-align: middle;'>
+							<td style='width: 10px;'/>						
+							<td style='width: 90px;'>
+								<ul class=pane-template-results style="width: 100%;">
+									<li style="text-align: center;">
+									    <a class="pane-template-results-n1" href="#">Playlist</a>
+									    <ul class="pane-template-results-n1_1" style="width: 100px;">
+										<li><a href="#">Playlist</a></li>
+										<li><a href="#">Channel</a></li>
+										<li><a href="#">Video</a></li>														
+									    </ul>
+									</li>																			
+								</ul>
+								
+							</td>
+							<td style='width: 10px;'/>
+							<td style='text-align: center; width: auto;'>
+								<input class="pane-template-input ui-widget ui-widget-input" type='text' value='queen' style='height: 32px;'/>
+							</td>
+							<td style='width: 10px;'/>
+							<td style='text-align: left; width: 80px;'>
+								<button class='pane-template-button a_button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only'>pane-template-button-text</button>							
+							</td>
+							<td style='width: 10px;'/>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+			<div id="pane-template-body-tabs-fixed" class="tabs-list-pane" style='text-align: center; visibility:hidden;'>
+				<div class="pane-template-body-tabs-fixed pane_to_template pane_tab_body" style="height: 98%; border-width: 0px;">
+					<ul></ul>
+				</div>
+			</div>
+		</div>
+
+		
+		<div id='tabs-list-templates' style='visibility: hidden; display:none;'>
+			<ul>
+				<li id="tabs-list-template-menu" style='visibility:hidden'>
+					<a href="#tabs_center-2">tabs-list-template-menu-text</a>
+				</li>
+			</ul>
+					
+			<div id="tabs-list-template-body-append" class="keep_inside" style='text-align: center; visibility:hidden'>
+				<table style='height: 100%; width: 100%;'>
+					<tr style='height: 12%; vertical-align: middle;'>
+						<td style='text-align: left; width: auto;'>
+							<input class="tabs-list-template-input ui-widget ui-widget-input" type='text' value=''/>
+						</td>
+						<td style='width: 1%;'>&nbsp;</td>
+						<td style='width: 5%; text-align: right;'>
+							<button class='tabs-list-template-clear a_button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only' style='width: 110px;'>Clear</button>
+						</td>
+						<td style='width: 1%;'>&nbsp;</td>
+						<td style='width: 5%; text-align: right;'>
+							<button class='tabs-list-template-button a_button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only' style='width: 110px;'>tabs-list-template-button-text</button>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="5">
+							<table style='width: 100%; height: 100%; border: 1px solid gray; border-style: dashed;'>
+								<tr>
+									<td style='width: 100%; text-align: center; vertical-align: top;'>									
+<!-- 										<ul class="table_to_template tabs-list-template-body-append connectedSortable" style='height: 100%;'/> -->
+										<ol class='placeholder-container table_list table_to_template tabs-list-template-body-append connectedSortable'>
+									      <li class="placeholder" style=''></li>
+									    </ol>
+									</td>																									
+								</tr>
+							</table>	
+						</td>			
+					</tr>
+				</table>
+			</div>
+
+					
+			<div id="tabs-list-template-body-create_from_ids" class="keep_inside" style='text-align: center; visibility:hidden'>
+				<table style='height: 100%; width: 100%;'>
+					<tr style='height: 12%; vertical-align: middle;'>
+						<td style='text-align: left; width: auto;'>
+							<input class="tabs-list-template-input ui-widget ui-widget-input" type='text' value=''/>
+						</td>
+						<td style='width: 1%;'>&nbsp;</td>
+						<td style='width: 5%; text-align: right;'>
+							<button class='tabs-list-template-clear a_button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only' style='width: 110px;'>Clear</button>
+						</td>
+						<td style='width: 1%;'>&nbsp;</td>
+						<td style='width: 5%; text-align: right;'>
+							<button class='tabs-list-template-button a_button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only' style='width: 110px;'>tabs-list-template-button-text</button>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="5">
+							<table style='width: 100%; height: 100%; border: 1px solid gray; border-style: dashed;'>
+								<tr>
+									<td style='width: 100%; text-align: center; vertical-align: top;'>									
+										<textarea id='create_id_list' style='width: 100%; height: 100%;'></textarea>
+									</td>																									
+								</tr>
+							</table>	
+						</td>			
+					</tr>
+				</table>
+			</div>
+
+		
+			<div id="tabs-list-template-body-append-auto" class="keep_inside" style='text-align: center; visibility:hidden'>
+				<table style='height: 100%; width: 100%;'>
+					<tr style='height: 2%; vertical-align: middle;'><td></td></tr>
+					<tr style='height: 14%; vertical-align: middle;'>
+						<td class='table_to_template tabs-list-template-body-append-auto' style='text-align: center; width: 100%; border: 1px solid gray;'>									
+							<div style='text-align: center; vertical-align: middle; width: 100%; height: 100%;'>
+								<ol class='placeholder-container' style='width: 100%; height: 100%;'>
+									<li class="placeholder" style='list-style-type: none; margin-left: -2.5em;'></li>
+								</ol>
+							</div>
+						</td>
+					</tr>
+					<tr style='height: 2%; vertical-align: middle;'><td></td></tr>
+					<tr style='height: auto; width: 100%;'>
+						<td>
+							<table style='width: 100%; height: 100%; border: 1px solid black; border-style: dashed;'>
+								<tr>
+									<td style='width: 100%; text-align: center; vertical-align: top;'>
+										<div class="alert alert-info" style="display: block; margin-top: 25px; font-size: 0.8em;"/>
+									</td>
+								</tr>
+							</table>	
+						</td>			
+					</tr>
+					<tr style='height: 2%; vertical-align: middle;'><td></td></tr>
+				</table>
+			</div>
+
+			<div id="tabs-list-template-body-append-play" class="keep_inside" style='text-align: center; visibility:hidden'>
+				<table style='height: 100%; width: 100%;'>
+					<tr style='height: 2%; vertical-align: middle;'><td></td></tr>
+					<tr style='height: 14%; vertical-align: middle;'>
+						<td class='table_to_template tabs-list-template-body-append-play' style='text-align: center; width: 100%; border: 1px solid gray;'>									
+							<div style='text-align: center; vertical-align: middle; width: 100%; height: 100%;'>
+								<ol class='placeholder-container' style='width: 100%; height: 100%;'>
+									<li class="placeholder" style='list-style-type: none; margin-left: -2.5em;'></li>
+								</ol>
+							</div>
+						</td>
+					</tr>
+					<tr style='height: 2%; vertical-align: middle;'><td></td></tr>
+					<tr style='height: auto; width: 100%;'>
+						<td>
+							<table style='width: 100%; height: 100%; border: 1px solid black; border-style: dashed;'>
+								<tr>
+									<td style='width: 100%; text-align: center; vertical-align: top;'>
+										<div id ="play_container" class="alert alert-info" style="display: block; margin-top: 25px; font-size: 0.8em;"/>
+									</td>
+								</tr>
+							</table>	
+						</td>			
+					</tr>
+					<tr style='height: 2%; vertical-align: middle;'><td></td></tr>
+				</table>
+			</div>
+
+		</div>
+				
+		<iframe id='frame_links' type="application/json" src="" style='visibility:hidden; display: none;'></iframe>
+		<iframe id='iframe_ajax_error' style='width: 480px; height:300px; visibility:hidden; display: none;'></iframe>
+		
+		<div id="html_sizes_ref" style="position: absolute; visibility: hidden;">
+			<span>references</span>
+		</div>
+		
+		<script type="text/template" id="plm-result-template">
+			<li class='ui-state-default' id='#{id}' id_yt='#{id_yt}'>
+				<table class='plm-video-result' style='height:66px; border-spacing: 0px;'>
+					<tr style='height: 100%; vertical-align: top;'>
+						<td style='width: auto; text-align: left;'>
+							<table style='border-spacing: 0px; height: 100%;'>
+								<tr style='vertical-align: top; height: auto; font-size: 10px; font-weight: bold;'>
+									<td title='#{result_title_tooltip}' class='result_title' style='text-align: left; width: auto;'>#{title}</td>
+									<td class='result_total' style='text-align: right; width: 1%;'></td>
+								</tr>																
+								<tr style='vertical-align: middle; height: 99%;'>
+									<td title='#{result_description_tooltip}' class='result_description' style='font-size: 10px;' colspan='2' >#{description}</td>
+								</tr>
+							</table>
+						</td>
+						<td style='width: 2px;'/>
+						<td style='width: 88px; text-align: right;/* vertical-align: bottom; */'>
+							<div class='result_img' style='width: 100%; height: 100%; background: url(#{img}) no-repeat center center;'></div>
+						</td>
+					</tr>
+				</table>
+			</li>		
+		</script>
+	</body>
+</html>

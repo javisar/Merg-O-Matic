@@ -1,0 +1,12 @@
+body {
+  position: relative;
+  padding: 20px;
+}
+
+ul.nav-tabs {
+	display: none;
+}
+
+#menu-container {
+	min-width: 160px;
+}

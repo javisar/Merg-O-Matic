@@ -1,0 +1,11 @@
+https://content.googleapis.com/discovery/v1/apis/youtube/v3/rpc?fields=methods%2F*%2Fid&pp=0
+https://content.googleapis.com/discovery/v1/apis/youtube/v3/rpc?fields=schemas%2F*%2Fid&pp=0
+https://content.googleapis.com/discovery/v1/apis/youtube/v3/rpc?fields=auth
+https://content.googleapis.com/discovery/v1/apis/youtube/v3/rpc
+
+http://developers.google.com/apis-explorer/#p/youtube/v3/
+https://developers.google.com/youtube/
+https://developers.google.com/youtube/2.0/developers_guide_protocol_batch_processing
+
+https://code.google.com/p/google-api-javascript-client/wiki/RpcBatch
+https://developers.google.com/api-client-library/javascript/features/httpbatch

@@ -1,0 +1,44 @@
+
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+var request:URLRequest = new URLRequest("http://gdata.youtube.com/feeds/api/videos/batch");
+
+request.data = <feed 
+	xmlns="http://www.w3.org/2005/Atom" 
+	xmlns:batch="http://schemas.google.com/gdata/batch" 
+	xmlns:yt="http://gdata.youtube.com/schemas/2007">
+	
+	<batch:operation type="query"/>
+	<!-- here you set the list of videos up to 50 -->
+	<entry><id>http://gdata.youtube.com/feeds/api/videos/VIDEOID1</id></entry>
+	<entry><id>http://gdata.youtube.com/feeds/api/videos/VIDEOID2</id></entry>
+	<entry><id>http://gdata.youtube.com/feeds/api/videos/VIDEOID3</id></entry>
+</feed>.toString()
+
+
+request.method = URLRequestMethod.POST;
+
+var loader = new URLLoader(request);
+
+loader.addEventListener(Event.COMPLETE, infoLoaded);
+
+}
+
+function infoLoaded(e:Event):void {
+	e.target.removeEventListener(Event.COMPLETE, infoLoaded);
+	var xmlData = new XML(e.target.data);
+	trace(xmlData)
+}
